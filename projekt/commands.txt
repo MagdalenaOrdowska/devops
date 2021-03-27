@@ -18,3 +18,8 @@ docker rmi
 
 curl --header "Content-Type: application/json" --request POST --data '{"name":"football","type":"team"}' http://localhost:9090/sport
 curl --header "Content-Type: application/json" --request POST --data '{"name":"ice skating","type":"individual"}' http://localhost:9090/sport
+
+winpty docker exec -it container_id sh
+su - postgres
+psql
+\dt
