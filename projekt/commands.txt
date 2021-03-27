@@ -1,0 +1,20 @@
+yarn init -y
+yarn add express redis pg body-parser cors nodemon
+
+docker network ls
+docker network create mymulticont
+
+docker ps
+docker images
+
+docker build . -t mordowska/mywebapp
+
+docker run -v /d/Users/Magdalena\ Ordowska/Desktop/studia\ magisterskie/devops/projekt:/var/lib/postgresql/data --rm --name mypostgres --network=mymulticont -e POSTGRES_PASSWORD=1qaz2wsx -d postgres:alpine &
+docker run --name=myredis --network=mymulticont --rm -d redis:alpine &
+docker run --rm --network=mymulticont -p 9090:9090 mordowska/mywebapp
+
+docker stop
+docker rmi 
+
+curl --header "Content-Type: application/json" --request POST --data '{"name":"football","type":"team"}' http://localhost:9090/sport
+curl --header "Content-Type: application/json" --request POST --data '{"name":"ice skating","type":"individual"}' http://localhost:9090/sport
