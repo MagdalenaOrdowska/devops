@@ -23,9 +23,11 @@ app.get('/hello',(req, res) => {
 app.get('/sport', queries.getSport);
 app.get('/sport/:id', queries.getSportById);
 app.post('/sport', queries.createSport);
+app.delete('/sport/:id', queries.deleteSport);
+app.put('/sport/:id', queries.updateSport);
 
 const PORT = 9090;
 
 app.listen(PORT, () => {
-    console.log(`API is listening of port ${PORT}`);
+    console.log(`API is listening on port ${PORT}`);
 });

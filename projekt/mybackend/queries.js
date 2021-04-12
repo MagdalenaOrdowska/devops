@@ -2,19 +2,19 @@ const { Pool } = require('pg');
 
 // postgres client
 const pgClient = new Pool({
-    user: "postgres",
-    password: "1qaz2wsx",
-    database: "postgres",
-    host: "mypostgres",
-    port: "5432"
+  user: "postgres",
+  password: "1qaz2wsx",
+  database: "postgres",
+  host: "mypostgres",
+  port: "5432"
 });
 
 pgClient.on('connect', () => {
-    console.log('Connected to postgres');
+  console.log('Connected to postgres');
 });
 
 pgClient.on('error', () => {
-    console.log("Postgres not connected");
+  console.log("Postgres not connected");
 });
 
 // redis client
@@ -36,14 +36,14 @@ redisClient.on('error', () => {
 
 
 // table
-function createTableIfNotExists(){
-    pgClient.query(`CREATE TABLE IF NOT EXISTS sport (
+function createTableIfNotExists() {
+  pgClient.query(`CREATE TABLE IF NOT EXISTS sport (
             ID SERIAL PRIMARY KEY     NOT NULL,
             name           TEXT    NOT NULL,
             type           TEXT     NOT NULL
         );`)
-    .catch( (err) => {
-        console.log(err);
+    .catch((err) => {
+      console.log(err);
     });
 };
 
@@ -53,7 +53,7 @@ const getSport = (request, response) => {
     if (error) {
       throw error
     }
-    response.status(200).json(results.rows) 
+    response.status(200).json(results.rows)
   })
 };
 
@@ -64,42 +64,70 @@ const getSportById = (request, response) => {
   redisClient.exists(id, (err, ok) => {
     if (err) throw err;
 
-    if(ok == 1){
-        redisClient.hgetall(id, function(err, object) {
-            if(err) throw err;
-            response.status(200).header('cache', 'true').json(object);
-        })
-        console.log(`from redis with ID = ${id}`);
+    if (ok == 1) {
+      redisClient.hgetall(id, function (err, object) {
+        if (err) throw err;
+        response.status(200).header('cache', 'true').json(object);
+      })
+      console.log(`from redis with ID = ${id}`);
     } else {
       pgClient.query('SELECT * FROM sport WHERE id = $1', [id], (error, results) => {
-          if (error) {
-              console.log(error);
-          }
-          response.status(200).json(results.rows)
-        })
-        console.log(`from postgres with ID = ${id}`);
+        if (error) {
+          console.log(error);
+        }
+        response.status(200).json(results.rows[0])
+      })
+      console.log(`from postgres with ID = ${id}`);
     }
   });
 };
 
 // post
 const createSport = (request, response) => {
-    const { name, type } = request.body
-  
-    pgClient.query('INSERT INTO sport (name, type) VALUES ($1, $2) RETURNING ID', [name, type], (error, result) => {
+  const { name, type } = request.body
+
+  pgClient.query('INSERT INTO sport (name, type) VALUES ($1, $2) RETURNING ID', [name, type], (error, result) => {
+    if (error) {
+      console.log(error);
+      // console.log(request.body);
+    }
+    var id = result.rows[0].id;
+    redisClient.hmset(id, 'name', name, 'type', type);
+    response.status(201).send(`record added with ID: ${id}`)
+  })
+};
+
+const deleteSport = (request, response) => {
+  const id = parseInt(request.params.id)
+
+  pgClient.query('DELETE FROM sport WHERE id = $1', [id], (error, results) => {
+    if (error) {
+      throw error
+    }
+    response.status(200).send(`record deleted with ID: ${id}`)
+  })
+};
+
+const updateSport = (request, response) => {
+  const id = parseInt(request.params.id)
+  const { name, type } = request.body
+
+  pgClient.query(
+    'UPDATE sport SET name = $1, type = $2 WHERE id = $3',
+    [name, age, id],
+    (error, results) => {
       if (error) {
-        console.log(error);
-        // console.log(request.body);
+        throw error;
       }
-      var id = result.rows[0].id;
-      redisClient.hmset(id,'name', name, 'type', type);
-      response.status(201).send(`record added with ID: ${id}`)
+      response.status(200).send(`record modified with ID: ${id}`)
     })
 };
 
 module.exports = {
-    createTableIfNotExists,
-    createSport,
-    getSport,
-    getSportById
-  }
+  createTableIfNotExists,
+  createSport,
+  getSport,
+  getSportById,
+  deleteSport,
+  updateSport
+}
