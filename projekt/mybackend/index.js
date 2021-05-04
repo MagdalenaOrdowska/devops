@@ -26,7 +26,7 @@ app.post('/sport', queries.createSport);
 app.delete('/sport/:id', queries.deleteSport);
 app.put('/sport/:id', queries.updateSport);
 
-const PORT = 9090;
+const PORT = 4000;
 
 app.listen(PORT, () => {
     console.log(`API is listening on port ${PORT}`);

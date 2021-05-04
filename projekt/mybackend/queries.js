@@ -114,7 +114,7 @@ const updateSport = (request, response) => {
 
   pgClient.query(
     'UPDATE sport SET name = $1, type = $2 WHERE id = $3',
-    [name, age, id],
+    [name, type, id],
     (error, results) => {
       if (error) {
         throw error;

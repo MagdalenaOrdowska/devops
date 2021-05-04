@@ -2,29 +2,40 @@ version: '3'
 
 services: 
     myredis:
-      image: 'redis:alpine'
+        image: 'redis:alpine'
     mypostgres:
-      image: 'postgres:alpine'
-      environment: 
-          - POSTGRES_PASSWORD=1qaz2wsx
-          - POSTGRES_DB=postgres
-          - POSTGRES_USER=postgres
-      volumes:
-          - /d/Users/Magdalena\ Ordowska/Desktop/studia\ magisterskie/devops/projekt:/var/lib/postgresql/data
-      ports:
-      - "6432:5432"
+        image: 'postgres:alpine'
+        environment: 
+            - POSTGRES_PASSWORD=1qaz2wsx
+            - POSTGRES_DB=postgres
+            - POSTGRES_USER=postgres
+        volumes:
+            - /d/Users/Magdalena\ Ordowska/Desktop/studia\ magisterskie/devops/projekt:/var/lib/postgresql/data
+        ports:
+            - "6432:5432"
+    mynginx:
+        restart: always
+        build:
+            dockerfile: Dockerfile
+            context: ./mynginx
+        ports: 
+            - '9090:80'
     mybackend:
-      build:
-        dockerfile: Dockerfile
-        context: ./mybackend
-      volumes:
-      - /opt/app/node_modules
-      - ./:/opt/app
-      environment:
-        - POSTGRES_PASSWORD=1qaz2wsx
-        - POSTGRES_DB=postgres
-        - POSTGRES_USER=postgres
-        - REDIS_HOST=myredis
-        - POSTGRES_HOST=mypostgres
-      ports:
-        - "5000:4000" 
+        build:
+            dockerfile: Dockerfile
+            context: ./mybackend
+        depends_on: 
+            - 'mypostgres'
+            - 'myredis'
+            - 'mynginx'
+        volumes:
+            - /opt/app/node_modules
+            - /d/Users/Magdalena\ Ordowska/Desktop/studia\ magisterskie/devops/projekt/mybackend:/opt/app
+        environment:
+            - POSTGRES_PASSWORD=1qaz2wsx
+            - POSTGRES_DB=postgres
+            - POSTGRES_USER=postgres
+            - REDIS_HOST=myredis
+            - POSTGRES_HOST=mypostgres
+        ports:
+            - "5000:4000" 
