@@ -1,6 +1,6 @@
 version: '3'
 
-services: 
+services:
     myredis:
         image: 'redis:alpine'
     mypostgres:
@@ -40,7 +40,7 @@ services:
         ports:
             - "5000:4000" 
         image: mordowska/mybackend
-     myfrontend:
+    myfrontend:
         build:
             dockerfile: Dockerfile.dev
             context: ./myfrontend
