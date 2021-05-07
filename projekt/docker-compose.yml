@@ -22,7 +22,7 @@ services:
             - '9090:80'
     mybackend:
         build:
-            dockerfile: Dockerfile
+            dockerfile: Dockerfile.dev
             context: ./mybackend
         depends_on: 
             - 'mypostgres'
@@ -39,3 +39,14 @@ services:
             - POSTGRES_HOST=mypostgres
         ports:
             - "5000:4000" 
+        image: mordowska/mybackend
+     myfrontend:
+        build:
+            dockerfile: Dockerfile.dev
+            context: ./myfrontend
+        depends_on: 
+            - 'mynginx'
+        volumes:
+            - /opt/app/node_modules
+            - ./myfrontend:/opt/app
+        image: mordowska/myfrontend
