@@ -19,8 +19,8 @@ const GetSport = (props) => {
         <>
         <div>
             <h1>Sport search</h1>
-            <label for="getsportid">ID:</label>
-            <input id="getsportid" type='number' value={sportID} onStar onChange={event => setSportID(event.target.value)}/><br/>
+            <label htmlFor="getsportid">ID:</label>
+            <input id="getsportid" type='number' value={sportID} onChange={event => setSportID(event.target.value)}/><br/>
             <input type='submit' value='OK' onClick={handleSubmit}/>
             <br/>
             Name: {sport.name}<br/>

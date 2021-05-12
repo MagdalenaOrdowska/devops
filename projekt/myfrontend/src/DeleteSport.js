@@ -15,8 +15,8 @@ const DeleteSport = (props) => {
     return (
         <>
             <h1>Sport deletion</h1>
-            <label for="deletesportid">ID:</label>
-            <input id="deletesportid" type='number' value={sportID} onStar onChange={event => setSportID(event.target.value)}/><br/>
+            <label htmlFor="deletesportid">ID:</label>
+            <input id="deletesportid" type='number' value={sportID} onChange={event => setSportID(event.target.value)}/><br/>
             <input type='submit' value='OK' onClick={handleSubmit}/>
         </>
     );

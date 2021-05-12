@@ -10,9 +10,7 @@ services:
             - POSTGRES_DB=postgres
             - POSTGRES_USER=postgres
         volumes:
-            - /d/Users/Magdalena\ Ordowska/Desktop/studia\ magisterskie/devops/projekt:/var/lib/postgresql/data
-        ports:
-            - "6432:5432"
+            - ./postgresdata:/var/lib/postgresql/data
     mynginx:
         restart: always
         build:
@@ -20,6 +18,7 @@ services:
             context: ./mynginx
         ports: 
             - '9090:80'
+        image: mordowska/mynginx
     mybackend:
         build:
             dockerfile: Dockerfile.dev
@@ -30,7 +29,7 @@ services:
             - 'mynginx'
         volumes:
             - /opt/app/node_modules
-            - /d/Users/Magdalena\ Ordowska/Desktop/studia\ magisterskie/devops/projekt/mybackend:/opt/app
+            - /home/ubuntu/devops/projekt/mybackend/:/opt/app
         environment:
             - POSTGRES_PASSWORD=1qaz2wsx
             - POSTGRES_DB=postgres

@@ -5,7 +5,7 @@ const Sport = (props) => {
     const [sport, setSports] = useState([]);
     const[number, setNumber] = useState(-1);
     useEffect(() =>{
-        axios.get('http://localhost:9090/api/sport')
+        axios.get('/api/sport')
         .then(response => setSports(response.data))
         .catch(error => console.log(error));
     }, []);

@@ -20,9 +20,9 @@ const AddSport = (props) => {
     return (
         <>
             <h1>Add new sport</h1>
-            <label for="addsportname">Name:</label>
+            <label htmlFor="addsportname">Name:</label>
             <input id="addsportname" type='text' value={title} onChange={event => setTitle(event.target.value)}/><br/>
-            <label for="addsporttype">Type:</label>
+            <label htmlFor="addsporttype">Type:</label>
             <input id="addsporttype" type='number' value={body} onChange={event => setBody(event.target.value)}/><br/>
             <input type='submit' value='OK' onClick={handleSubmit}/>
         </>

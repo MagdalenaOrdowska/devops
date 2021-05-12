@@ -20,11 +20,11 @@ const UpdateSport = (props) => {
     return (
         <>
             <h1>Sport update</h1>
-            <label for="updatesportid">ID:</label>
-            <input id="updatesportid" type='number' value={sportID} onStar onChange={event => setSportID(event.target.value)}/><br/>
-            <label for="updatesportname">Name:</label>
+            <label htmlFor="updatesportid">ID:</label>
+            <input id="updatesportid" type='number' value={sportID} onChange={event => setSportID(event.target.value)}/><br/>
+            <label htmlFor="updatesportname">Name:</label>
             <input id="updatesportname" type='text' value={title} onChange={event => setTitle(event.target.value)}/><br/>
-            <label for="updatesporttype">Type:</label>
+            <label htmlFor="updatesporttype">Type:</label>
             <input id="updatesporttype" type='number' value={body} onChange={event => setBody(event.target.value)}/><br/>
             <input type='submit' value='OK' onClick={handleSubmit}/>
         </>

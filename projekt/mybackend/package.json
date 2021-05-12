@@ -1,8 +1,8 @@
 {
-  "name": "projekt",
+  "name": "mybackend",
   "version": "1.0.0",
+  "description": "",
   "main": "index.js",
-  "license": "MIT",
   "dependencies": {
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
@@ -12,6 +12,10 @@
     "redis": "^3.0.2"
   },
   "scripts": {
-    "start": "node index.js"
-  }
+    "start": "node index.js",
+    "dev": "nodemon"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
 }
