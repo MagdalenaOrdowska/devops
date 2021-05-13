@@ -6,7 +6,7 @@ const DeleteSport = (props) => {
     const [sportID, setSportID] = useState("");
 
     const handleSubmit = (event) =>{
-        axios.delete(`http://localhost:9090/api/sport/${sportID}`)
+        axios.delete(`/api/sport/${sportID}`)
         .then(response => console.log(response))
         .catch(error => console.log(error));
         event.preventDefault();

@@ -8,7 +8,7 @@ const UpdateSport = (props) => {
     const [body, setBody] = useState("");
 
     const handleSubmit = (event) =>{
-        axios.put(`http://localhost:9090/api/sport/${sportID}`,{
+        axios.put(`/api/sport/${sportID}`,{
             name: title,
             type: body,
         })

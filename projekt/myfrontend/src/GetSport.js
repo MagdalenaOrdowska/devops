@@ -8,7 +8,7 @@ const GetSport = (props) => {
 
     const handleSubmit = (event) =>{
         console.log(sportID);
-        axios.get(`http://localhost:9090/api/sport/${sportID}`)
+        axios.get(`/api/sport/${sportID}`)
         .then(response => setSport(response.data))
         .catch(error => console.log(error));
         console.log(sport);

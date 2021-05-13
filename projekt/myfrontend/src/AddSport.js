@@ -8,7 +8,7 @@ const AddSport = (props) => {
 
     const handleSubmit = (event) =>{
         console.log(`Send ${title} ${body}`);
-        axios.post('http://localhost:9090/api/sport',{
+        axios.post('/api/sport',{
             name: title,
             type: body,
         })
