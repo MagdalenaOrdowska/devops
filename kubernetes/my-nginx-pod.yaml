@@ -4,10 +4,10 @@ metadata:
   name: my-nginx-pod
   labels:
     component: web
-
+    name: my-app
 spec:
   containers:
-    - name: my-nginx
-      image: nginx:alpine
-      ports:
-        - containerPort: 80
+  - name: my-nginx
+    image: mordowska/custom_nginx
+    ports:
+      - containerPort: 80
