@@ -23,7 +23,7 @@ const AddSport = (props) => {
             <label htmlFor="addsportname">Name:</label>
             <input id="addsportname" type='text' value={title} onChange={event => setTitle(event.target.value)}/><br/>
             <label htmlFor="addsporttype">Type:</label>
-            <input id="addsporttype" type='number' value={body} onChange={event => setBody(event.target.value)}/><br/>
+            <input id="addsporttype" type='text' value={body} onChange={event => setBody(event.target.value)}/><br/>
             <input type='submit' value='OK' onClick={handleSubmit}/>
         </>
     );

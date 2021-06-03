@@ -25,7 +25,7 @@ const UpdateSport = (props) => {
             <label htmlFor="updatesportname">Name:</label>
             <input id="updatesportname" type='text' value={title} onChange={event => setTitle(event.target.value)}/><br/>
             <label htmlFor="updatesporttype">Type:</label>
-            <input id="updatesporttype" type='number' value={body} onChange={event => setBody(event.target.value)}/><br/>
+            <input id="updatesporttype" type='text' value={body} onChange={event => setBody(event.target.value)}/><br/>
             <input type='submit' value='OK' onClick={handleSubmit}/>
         </>
     );

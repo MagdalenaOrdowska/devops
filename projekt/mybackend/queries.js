@@ -106,6 +106,8 @@ const deleteSport = (request, response) => {
     }
     response.status(200).send(`record deleted with ID: ${id}`)
   })
+
+  redisClient.del(id);
 };
 
 const updateSport = (request, response) => {
@@ -121,6 +123,8 @@ const updateSport = (request, response) => {
       }
       response.status(200).send(`record modified with ID: ${id}`)
     })
+    
+    redisClient.hmset(id, 'name', name, 'type', type);
 };
 
 module.exports = {
