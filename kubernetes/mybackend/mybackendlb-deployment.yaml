@@ -1,0 +1,50 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mybackendlb-deployment
+  labels:
+    component: backend
+    app: my-applb2
+
+spec:
+  template:
+    metadata:
+      name: mybackendlb-pod
+      labels:
+        component: backend
+        app: my-applb2
+    spec:
+      containers:
+        - name: mybackendlb-container
+          image: mpiatk/mybackend
+          env:
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: myapp-secret
+                  key: PGPASSWORD
+            - name: POSTGRES_DB
+              valueFrom:
+                configMapKeyRef: 
+                  name: mypostgres-config
+                  key: PGDATABASE
+            - name: POSTGRES_USER
+              valueFrom:
+                configMapKeyRef: 
+                  name: mypostgres-config
+                  key: PGUSER   
+            - name: POSTGRES_HOST
+              valueFrom:
+                configMapKeyRef: 
+                  name: mypostgres-config
+                  key: PGHOST             
+            - name: REDIS_HOST
+              valueFrom:
+                configMapKeyRef: 
+                  name: myredis-config
+                  key: REDIS_HOST  
+  replicas: 3
+  selector:
+    matchLabels:
+      component: backend
+      app: my-applb2
