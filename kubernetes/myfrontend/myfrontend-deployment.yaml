@@ -21,4 +21,4 @@ spec:
   selector:
     matchLabels:
       component: myfrontend
-      app: my-applb2
+      app: my-app

@@ -13,4 +13,4 @@ spec:
       nodePort: 31110
   selector:
     component: myfrontend
-    app: my-applb2
+    app: my-app

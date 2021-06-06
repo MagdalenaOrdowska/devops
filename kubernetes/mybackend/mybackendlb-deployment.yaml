@@ -4,7 +4,7 @@ metadata:
   name: mybackendlb-deployment
   labels:
     component: mybackend
-    app: my-applb2
+    app: my-app
 
 spec:
   template:
@@ -47,4 +47,4 @@ spec:
   selector:
     matchLabels:
       component: mybackend
-      app: my-applb2
+      app: my-app

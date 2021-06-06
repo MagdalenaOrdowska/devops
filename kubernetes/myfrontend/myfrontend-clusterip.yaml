@@ -9,4 +9,4 @@ spec:
     targetPort: 3000
   selector:
     component: myfrontend
-    app: my-applb
+    app: my-app
