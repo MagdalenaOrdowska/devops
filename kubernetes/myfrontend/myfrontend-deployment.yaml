@@ -3,22 +3,22 @@ kind: Deployment
 metadata:
   name: myfrontend-deployment
   labels:
-    component: frontend
-    app: my-frontend
+    component: myfrontend
+    app: my-myfrontend
 
 spec:
   template:
     metadata:
       name: myfrontend-pod
       labels:
-        component: frontend
-        app: my-frontend
+        component: myfrontend
+        app: my-myfrontend
     spec:
       containers:
         - name: myfrontend-container
-          image: mpiatk/myfrontend
+          image: mordowska/myfrontend
   replicas: 3
   selector:
     matchLabels:
-      component: frontend
-      app: my-frontend
+      component: myfrontend
+      app: my-applb2
