@@ -3,7 +3,7 @@ kind: Service
 metadata:
   name: myfrontend-node-port
   labels:
-    component: myfrontend
+    component: frontend
     app: my-applb
 spec:
   type: NodePort
@@ -12,5 +12,5 @@ spec:
       targetPort: 3000
       nodePort: 31110
   selector:
-    component: myfrontend
-    app: my-app
+    component: frontend
+    app: my-frontend

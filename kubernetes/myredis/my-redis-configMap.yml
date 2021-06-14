@@ -4,5 +4,3 @@ metadata:
   name: myredis-config
 data:
   REDIS_HOST: myredis-clusterip
-  # POSTGRES_USER: postgres
-  # POSTGRES_DB: postgres

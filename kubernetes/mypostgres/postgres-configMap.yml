@@ -3,10 +3,6 @@ kind: ConfigMap
 metadata:
   name: mypostgres-config
 data:
-  # PGDATABASE: myappdb
-  # PGUSER: myappuser
   PGDATABASE: postgres
   PGUSER: postgres
   PGHOST: mypostgres-clusterip
-  # POSTGRES_USER: postgres
-  # POSTGRES_DB: postgres

@@ -3,14 +3,14 @@ kind: Service
 metadata:
   name: mybackendlb-node-port
   labels:
-    component: mybackend
+    component: backend
     app: my-applb
 spec:
   type: NodePort
   ports:
-    - port: 5000
-      targetPort: 5000
+    - port: 4000
+      targetPort: 4000
       nodePort: 31100
   selector:
-    component: mybackend
-    app: my-app
+    component: backend
+    app: my-applb2

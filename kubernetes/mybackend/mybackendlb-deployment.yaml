@@ -3,20 +3,20 @@ kind: Deployment
 metadata:
   name: mybackendlb-deployment
   labels:
-    component: mybackend
-    app: my-app
+    component: backend
+    app: my-applb2
 
 spec:
   template:
     metadata:
       name: mybackendlb-pod
       labels:
-        component: mybackend
+        component: backend
         app: my-applb2
     spec:
       containers:
         - name: mybackendlb-container
-          image: mordowska/mybackend
+          image: mordowska/backend
           env:
             - name: POSTGRES_PASSWORD
               valueFrom:
@@ -46,5 +46,5 @@ spec:
   replicas: 3
   selector:
     matchLabels:
-      component: mybackend
-      app: my-app
+      component: backend
+      app: my-applb2

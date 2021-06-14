@@ -11,4 +11,4 @@ spec:
   accessModes:
     - ReadWriteOnce
   hostPath:
-    path: "/opt/kub_pg"
+    path: "/opt/kub_pv"

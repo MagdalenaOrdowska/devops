@@ -9,4 +9,3 @@ spec:
     targetPort: 5000
   selector:
     component: mybackend
-    app: my-app
