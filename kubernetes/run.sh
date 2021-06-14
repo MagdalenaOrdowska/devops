@@ -21,6 +21,8 @@ kubectl apply -f ./myredis/my-redis-configMap.yml
 
 kubectl apply -f ./myredis/myredis-clusterip.yml
 
+sleep 45
+
 # Start mybackend
 kubectl apply -f ./mybackend/mybackendlb-clusterip.yaml
 

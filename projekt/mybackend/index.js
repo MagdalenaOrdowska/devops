@@ -9,14 +9,15 @@ app.use(cors());
 app.use(express.json());
 
 app.get("/", (req, res) => {
-    res.send("Sport web app")
+    res.send("Sport web app\n")
 });
 
 // create table
 queries.createTableIfNotExists();
 
 app.get('/hello',(req, res) => {
-    res.send("Hello from sport project")
+    res.send("Hello from sport project\n");
+    console.log("hello");
   });
 
 // Mapping operations to endpoints
