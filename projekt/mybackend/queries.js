@@ -2,10 +2,10 @@ const { Pool } = require('pg');
 
 // postgres client
 const pgClient = new Pool({
-  user: "postgres",
-  password: "1qaz2wsx",
-  database: "postgres",
-  host: "mypostgres",
+  user: process.env.POSTGRES_USER,
+  password: process.env.POSTGRES_PASSWORD,
+  database: process.env.POSTGRES_DB,
+  host: process.env.POSTGRES_HOST,
   port: "5432"
 });
 
@@ -123,7 +123,7 @@ const updateSport = (request, response) => {
       }
       response.status(200).send(`record modified with ID: ${id}`)
     })
-    
+
     redisClient.hmset(id, 'name', name, 'type', type);
 };
 
