@@ -8,4 +8,5 @@ spec:
   - port: 4000
     targetPort: 4000
   selector:
-    component: mybackend
+    component: backend
+    app: my-applb2

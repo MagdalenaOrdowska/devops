@@ -8,4 +8,5 @@ spec:
   - port: 3000
     targetPort: 3000
   selector:
-    component: myfrontend
+    component: frontend
+    app: my-frontend
